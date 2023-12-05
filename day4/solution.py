@@ -9,13 +9,13 @@ def get_points(num_matches):
             sum += 1
         else:
             sum = sum*2
-        print("Points:" + str(sum))
     return sum
 
 file_list = open("input.txt").readlines()
 pattern = r'\b\d+\s*:\s*([^|]+)\s*\|\s*([^|]+)\b'
 winning_cards = []
 owned_cards = []
+scratchcards = [1]*len(file_list)
 
 
 for i, line in enumerate(file_list):
@@ -29,9 +29,21 @@ sum = 0
 for i, card in enumerate(owned_cards):
     matches = len(find_common_cards(winning_cards[i], card))
     sum += get_points(matches)
+    #  Pt 2
+    for k in range(scratchcards[i]):
+        for j in range(matches):
+            scratchcards[i+j+1] += 1
+        
+# Pt 2
+scratch_sum  = 0
+for i, val in enumerate(scratchcards):
+    scratch_sum += val
 
 
+# Pt 1
 print(sum)
+# Pt 2
+print(scratch_sum)
 
         
 
