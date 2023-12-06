@@ -11,8 +11,6 @@ def get_mapping(map_name, seed):
             return dest-source+seed
     return seed
 
-
-
 with open("input.txt") as fd:
     file_list = fd.readlines()
 
@@ -36,10 +34,7 @@ for c in file_list[2:]:
     source, dest, size = c.split()
     M[map_name].append([int(source), int(dest), int(size)])
 
-#print(M)
 min_loc = sys.maxsize
-
-#print(get_mapping("seed-to-soil", 13))
 
 for seed in seeds:
     seed_to_soil = get_mapping("seed-to-soil", seed)
